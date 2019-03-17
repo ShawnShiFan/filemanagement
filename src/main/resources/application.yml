@@ -1,11 +1,24 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.103.2.119:3306/sell?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT
+    url: jdbc:mysql://47.103.2.119:3306/filemanagement?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT
     username: root
     password: 123456789
 
+#配置mybatismapper.xml以及实体类扫描路径
+mybatis:
+  type-aliases-package: com/pax/filemanagement/dao
+  mapper-locations: classpath:com/pax/filemanagement/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
 
+#mybatis-pagehelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodArguments: true
+  params: count=countSql
 
 server:
   servlet:

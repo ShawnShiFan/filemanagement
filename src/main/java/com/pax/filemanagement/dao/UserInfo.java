@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import java.util.Date;
 
 /**
+ * User实体类
  * @Author: Shawn
  * @Date: 2019/3/17 14:21
  */
