@@ -33,6 +33,11 @@ public class UserInfoController {
 
     }
 
+    @PostMapping("/insert")
+    public List<UserInfo> create(){
+
+        return null;
+    }
 
 
 
