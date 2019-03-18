@@ -32,4 +32,20 @@ public interface UserMapper {
      */
     int insert(UserInfo userInfo);
 
+    /**按姓名模糊查询*/
+    List<UserInfo> SelectLikeName(String userName);
+
+    /**修改用户信息*/
+    int updateInfo(UserInfo userInfo);
+
+    /**根据性别查询*/
+    @Select("SELECT * FROM user_info WHERE user_sex = #{userSex}")
+    List<UserInfo> findBySex(@Param("userSex") Integer userSex);
+
+    /**根据userId删除信息*/
+   int deleteById(String userId);
+
+    /** 根据选择删除用户信息*/
+    int deleteSelect();
+
 }

@@ -15,10 +15,20 @@ import java.util.List;
 public interface UserService {
 
     /** 查询用户列表*/
-    List<UserInfo> findList();
+    List<UserInfo> findList(int pageNum,int pageSize);
 
     /** 查询单个用户列表*/
     List<UserInfo> findById(String userId);
 
+    /** 新增用户*/
+    int addUser(UserInfo userInfo);
 
+    /** 根据姓名模糊查询*/
+    List<UserInfo> selectLikeName(String userName);
+
+    /**根据性别查询*/
+    List<UserInfo> findBySex(Integer userSex);
+
+    /**根据userId删除信息*/
+    int deleteUserInfo(String userId);
 }

@@ -26,12 +26,12 @@ public class MybatisTest {
     @Test
     public void test(){
         UserInfo userInfo = new UserInfo();
-        userInfo.setUserId("6");
-        userInfo.setUserName("Shawn");
+        userInfo.setUserId("7");
+        userInfo.setUserName("Sha7wn");
         userInfo.setUserSex(0);
-        userInfo.setUserBirth("1997");
-        userInfo.setUserPhone("13242423423");
-        userInfo.setUserBirthAddress("江苏");
+        userInfo.setUserBirth("19977");
+        userInfo.setUserPhone("132427423423");
+        userInfo.setUserBirthAddress("江7苏");
         userInfo.setUserPhoto("file/e/1/2");
         Date date = new Date();
         userInfo.setCreateTime(date);

@@ -7,4 +7,16 @@
      VALUES (#{userId}, #{userName},#{userSex},#{userBirth},#{userPhone},#{userBirthAddress}, #{userPhoto},#{createTime}, #{updateTime})
     </insert>
 
+    <select  id="SelectLikeName" parameterType="java.lang.String"  resultType="java.util.Map">
+      SELECT * FROM user_info
+        <where>
+            <if test="_parameter!= null">
+              and  user_name LIKE CONCAT('%',#{_parameter,jdbcType=VARCHAR},'%')
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.String">
+    delete FROM user_info where user_id=#{userId}
+  </delete>
 </mapper>
