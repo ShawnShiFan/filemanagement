@@ -7,8 +7,8 @@ spring:
 
 #配置mybatismapper.xml以及实体类扫描路径
 mybatis:
-  type-aliases-package: com/pax/filemanagement/dao
-  mapper-locations: classpath:com/pax/filemanagement/mapper/*.xml
+  type-aliases-package: com.pax.filemanagement.dao
+  mapper-locations: classpath:mapping/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true

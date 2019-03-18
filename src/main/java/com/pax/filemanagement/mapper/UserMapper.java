@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 /**
@@ -15,8 +16,13 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
-    @Select("SELECT * FROM user_info WHERE user_id = #{user_id}")
+
+    /** 根据userId查询的单条记录*/
+    @Select("SELECT * FROM user_info WHERE user_id = #{userId}")
     List<UserInfo> findByUserId(@Param("userId") String userId);
+
+    @Select("SELECT * FROM user_info")
+    List<UserInfo> findAll();
 
     /**
      * 保存用户信息

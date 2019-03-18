@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
  */
 @Data
 @Entity
-public class UserInfo {
+public class UserInfo  implements Serializable {
     /**    用户id*/
     @Id
     private String  userId;
@@ -33,6 +34,8 @@ public class UserInfo {
     private Date createTime;
     /**    更新时间*/
     private Date updateTime;
+
+
 
 
 

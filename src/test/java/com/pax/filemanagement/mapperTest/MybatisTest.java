@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * @Author: Shawn
  * @Date: 2019/3/17 16:09
@@ -18,12 +21,30 @@ import org.springframework.test.context.junit4.SpringRunner;
 @Slf4j
 public class MybatisTest {
     @Autowired
-   // private UserMapper userMapper;
+    private UserMapper userMapper;
 
     @Test
     public void test(){
-        final int row =userMapper.insert(new UserInfo());
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserId("6");
+        userInfo.setUserName("Shawn");
+        userInfo.setUserSex(0);
+        userInfo.setUserBirth("1997");
+        userInfo.setUserPhone("13242423423");
+        userInfo.setUserBirthAddress("江苏");
+        userInfo.setUserPhoto("file/e/1/2");
+        Date date = new Date();
+        userInfo.setCreateTime(date);
+        userInfo.setUpdateTime(date);
+        final int row =userMapper.insert(userInfo);
+
+        log.info("【插入数据】,result={}",row);
+
+        final List<UserInfo> userInfos = userMapper.findByUserId("1");
+        log.info("【查找数据】： result={}",userInfos);
     }
+
+
 
 
 
