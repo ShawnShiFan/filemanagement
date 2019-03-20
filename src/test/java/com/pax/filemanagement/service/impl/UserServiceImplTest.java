@@ -1,6 +1,7 @@
 package com.pax.filemanagement.service.impl;
 
 import com.pax.filemanagement.dao.UserInfo;
+import com.pax.filemanagement.dto.UserInfoDTO;
 import com.pax.filemanagement.enums.ResultEnum;
 import com.pax.filemanagement.mapper.UserMapper;
 import com.pax.filemanagement.service.UserService;
@@ -37,33 +38,32 @@ public class UserServiceImplTest {
 
     @Test
     public void findById() {
-        List<UserInfo> userInfo = userService.findById("1");
-        log.info("【查找用户】： result={}",userInfo);
+        UserInfoDTO userInfoDTO = userService.findById("1");
+        log.info("【查找用户】： result={}",userInfoDTO);
     }
 
     @Test
     public void addUser() {
-        UserInfo userInfo = new UserInfo();
+        UserInfoDTO userInfoDTO = new UserInfoDTO();
         String userId = KeyUtil.genUniqueKey();
-        userInfo.setUserId(userId);
-        userInfo.setUserName("huanziq");
-        userInfo.setUserSex(0);
-        userInfo.setUserBirth("19977");
-        userInfo.setUserPhone("132427423423");
-        userInfo.setUserBirthAddress("江7苏");
-        userInfo.setUserPhoto("file/e/1/2");
+        userInfoDTO.setUserId(userId);
+        userInfoDTO.setUserName("huanziq");
+        userInfoDTO.setUserSex(0);
+        userInfoDTO.setUserBirth("19977");
+        userInfoDTO.setUserPhone("132427423423");
+        userInfoDTO.setUserBirthAddress("江7苏");
+        userInfoDTO.setUserPhoto("file/e/1/2");
         Date date = new Date();
-        userInfo.setCreateTime(date);
-        userInfo.setUpdateTime(date);
-        int row =userService.addUser(userInfo);
-
+        userInfoDTO.setCreateTime(date);
+        userInfoDTO.setUpdateTime(date);
+        int row =userService.addUser(userInfoDTO);
         log.info("【插入数据】,result={}",row);
 
     }
 
     @Test
     public void selectLike() {
-        List<UserInfo> result = userService.selectLikeName("S");
+        List<UserInfoDTO> result = userService.selectLikeName("S");
         log.info("【按姓名模糊查找】,result={}",result);
     }
 

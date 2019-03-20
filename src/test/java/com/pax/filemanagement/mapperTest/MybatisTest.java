@@ -1,7 +1,9 @@
 package com.pax.filemanagement.mapperTest;
 
 import com.pax.filemanagement.dao.UserInfo;
+import com.pax.filemanagement.dto.UserInfoDTO;
 import com.pax.filemanagement.mapper.UserMapper;
+import com.pax.filemanagement.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,23 +27,24 @@ public class MybatisTest {
 
     @Test
     public void test(){
-        UserInfo userInfo = new UserInfo();
-        userInfo.setUserId("7");
-        userInfo.setUserName("Sha7wn");
-        userInfo.setUserSex(0);
-        userInfo.setUserBirth("19977");
-        userInfo.setUserPhone("132427423423");
-        userInfo.setUserBirthAddress("江7苏");
-        userInfo.setUserPhoto("file/e/1/2");
+        UserInfoDTO userInfoDTO = new UserInfoDTO();
+        String userId = KeyUtil.genUniqueKey();
+        userInfoDTO.setUserId(userId);
+        userInfoDTO.setUserName("huanziq");
+        userInfoDTO.setUserSex(0);
+        userInfoDTO.setUserBirth("19977");
+        userInfoDTO.setUserPhone("132427423423");
+        userInfoDTO.setUserBirthAddress("江7苏");
+        userInfoDTO.setUserPhoto("file/e/1/2");
         Date date = new Date();
-        userInfo.setCreateTime(date);
-        userInfo.setUpdateTime(date);
-        final int row =userMapper.insert(userInfo);
+        userInfoDTO.setCreateTime(date);
+        userInfoDTO.setUpdateTime(date);
+        final int row =userMapper.insert(userInfoDTO);
 
         log.info("【插入数据】,result={}",row);
 
-        final List<UserInfo> userInfos = userMapper.findByUserId("1");
-        log.info("【查找数据】： result={}",userInfos);
+        final UserInfoDTO userInfoDTOs = userMapper.findByUserId("1");
+        log.info("【查找数据】： result={}",userInfoDTOs);
     }
 
 

@@ -2,18 +2,16 @@ package com.pax.filemanagement.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.pax.filemanagement.dao.UserInfo;
+import com.pax.filemanagement.dto.UserInfoDTO;
 import com.pax.filemanagement.enums.ResultEnum;
 import com.pax.filemanagement.mapper.UserMapper;
 import com.pax.filemanagement.service.UserService;
-import com.pax.filemanagement.utils.KeyUtil;
-import org.omg.PortableInterceptor.INACTIVE;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.constraints.Null;
+
 import java.util.List;
 
 /**
@@ -22,6 +20,7 @@ import java.util.List;
  * @Version 1.0
  */
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -35,7 +34,7 @@ public class UserServiceImpl implements UserService {
      * pageSize 每页显示的数据条数
      **/
     @Override
-    public List<UserInfo> findList(int pageNum, int pageSize) {
+    public List<UserInfoDTO> findList(int pageNum, int pageSize) {
 
         PageHelper.startPage(pageNum,pageSize);
         return   userMapper.findAll();
@@ -43,27 +42,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserInfo> findById(String userId) {
+    public UserInfoDTO findById(String userId) {
+      UserInfoDTO userInfoDTO = userMapper.findByUserId(userId);
+      return  userInfoDTO ;
 
-        return  userMapper.findByUserId(userId);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public int addUser(UserInfo userInfo) {
-        return   userMapper.insert(userInfo);
+    public int addUser(UserInfoDTO userInfoDTO) {
+        return   userMapper.insert(userInfoDTO);
 
     }
 
     @Override
-    public List<UserInfo> selectLikeName(String userName) {
+    public List<UserInfoDTO> selectLikeName(String userName) {
         return userMapper.SelectLikeName(userName);
     }
 
     @Override
     public int deleteUserInfo(String userId) {
-        List<UserInfo> userInfo = userMapper.findByUserId(userId);
-        if (userInfo == null){
+       UserInfoDTO userInfoDTO = userMapper.findByUserId(userId);
+        if (userInfoDTO == null){
             return  ResultEnum.USER_NOT_EXIST.getCode();
         }else{
             return userMapper.deleteById(userId);
@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserInfo> findBySex(Integer userSex) {
+    public List<UserInfoDTO> findBySex(Integer userSex) {
         return userMapper.findBySex(userSex);
     }
 }

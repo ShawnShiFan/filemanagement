@@ -1,5 +1,6 @@
 package com.pax.filemanagement.service;
 
+import com.pax.filemanagement.dto.UserInfoDTO;
 import org.springframework.data.domain.Page;
 import com.pax.filemanagement.dao.UserInfo;
 import org.springframework.data.domain.Pageable;
@@ -15,19 +16,19 @@ import java.util.List;
 public interface UserService {
 
     /** 查询用户列表*/
-    List<UserInfo> findList(int pageNum,int pageSize);
+    List<UserInfoDTO> findList(int pageNum,int pageSize);
 
     /** 查询单个用户列表*/
-    List<UserInfo> findById(String userId);
+    UserInfoDTO findById(String userId);
 
     /** 新增用户*/
-    int addUser(UserInfo userInfo);
+    int addUser(UserInfoDTO userInfoDTO);
 
     /** 根据姓名模糊查询*/
-    List<UserInfo> selectLikeName(String userName);
+    List<UserInfoDTO> selectLikeName(String userName);
 
     /**根据性别查询*/
-    List<UserInfo> findBySex(Integer userSex);
+    List<UserInfoDTO> findBySex(Integer userSex);
 
     /**根据userId删除信息*/
     int deleteUserInfo(String userId);

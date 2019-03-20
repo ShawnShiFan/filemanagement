@@ -3,6 +3,7 @@ package com.pax.filemanagement.controller;
 import com.github.pagehelper.PageHelper;
 import com.pax.filemanagement.VO.ResultVO;
 import com.pax.filemanagement.dao.UserInfo;
+import com.pax.filemanagement.dto.UserInfoDTO;
 import com.pax.filemanagement.service.UserService;
 import com.pax.filemanagement.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -26,14 +27,14 @@ import java.util.Map;
 public class UserInfoController {
     @Autowired
     private UserService userService;
-    @GetMapping("/findOne")
-    public List<UserInfo> findOne(@RequestParam(value = "userId",required = true) String userId){
+    @GetMapping("/{userId}")
+    public UserInfoDTO findOne(@PathVariable (value = "userId",required = true) String userId){
         return userService.findById(userId);
 
     }
     @GetMapping("/findAll")
-    public List<UserInfo> findAll(@RequestParam(name = "pageNum",required = false,defaultValue = "1")int pageNum,
-                                  @RequestParam(name = "pageSize",required = false,defaultValue = "1")int pageSize){
+    public List<UserInfoDTO> findAll(@RequestParam(name = "pageNum",required = false,defaultValue = "1")int pageNum,
+                                     @RequestParam(name = "pageSize",required = false,defaultValue = "1")int pageSize){
 
         PageHelper.startPage(pageNum,pageSize);
         return  userService.findList(pageNum,pageSize);
@@ -49,30 +50,30 @@ public class UserInfoController {
                        @RequestParam(value = "userPhoto",required = true)String userPhoto,
                        @RequestParam(value = "createTime",required = true)Date createTime,
                        @RequestParam(value = "updateTime",required = true) Date updateTime){
-        UserInfo userInfo = new UserInfo();
+        UserInfoDTO userInfoDTO = new UserInfoDTO();
         String userId = KeyUtil.genUniqueKey();
-        userInfo.setUserId(userId);
-        userInfo.setUserName(userName);
-        userInfo.setUserSex(userSex);
-        userInfo.setUserBirth(userBirth);
-        userInfo.setUserPhone(userPhone);
-        userInfo.setUserBirthAddress(userBirthAddress);
-        userInfo.setUserPhoto(userPhoto);
+        userInfoDTO.setUserId(userId);
+        userInfoDTO.setUserName(userName);
+        userInfoDTO.setUserSex(userSex);
+        userInfoDTO.setUserBirth(userBirth);
+        userInfoDTO.setUserPhone(userPhone);
+        userInfoDTO.setUserBirthAddress(userBirthAddress);
+        userInfoDTO.setUserPhoto(userPhoto);
         Date date = new Date();
-        userInfo.setCreateTime(date);
-        userInfo.setUpdateTime(date);
+        userInfoDTO.setCreateTime(date);
+        userInfoDTO.setUpdateTime(date);
 
-        return userService.addUser(userInfo);
+        return userService.addUser(userInfoDTO);
     }
 
     @PostMapping("/like")
-    public List<UserInfo> selectLikeName(@RequestParam(value = "userName",required = true)String userName){
+    public List<UserInfoDTO> selectLikeName(@RequestParam(value = "userName",required = true)String userName){
         return userService.selectLikeName(userName);
 
     }
 
     @GetMapping("/find/sex")
-    public List<UserInfo> findBySex(@RequestParam(value = "userSex",required = true)Integer userSex){
+    public List<UserInfoDTO> findBySex(@RequestParam(value = "userSex",required = true)Integer userSex){
         return userService.findBySex(userSex);
     }
 

@@ -1,21 +1,19 @@
-package com.pax.filemanagement.dao;
+package com.pax.filemanagement.dto;
 
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
- * User实体类
  * @Author: Shawn
- * @Date: 2019/3/17 14:21
+ * @Date: 2019/3/20 16:34
+ * @Version 1.0
  */
 @Data
-@Entity
-public class UserInfo  implements Serializable {
+public class UserInfoDTO {
     /**    用户id*/
     @Id
     @NotEmpty
@@ -52,10 +50,4 @@ public class UserInfo  implements Serializable {
     /**    更新时间*/
     @NotEmpty
     private Date updateTime;
-
-
-
-
-
-
 }
