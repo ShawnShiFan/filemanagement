@@ -1,10 +1,12 @@
 package com.pax.filemanagement.service;
 
+import com.pax.filemanagement.VO.ResultVO;
 import com.pax.filemanagement.dto.UserInfoDTO;
 import org.springframework.data.domain.Page;
 import com.pax.filemanagement.dao.UserInfo;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,4 +34,7 @@ public interface UserService {
 
     /**根据userId删除信息*/
     int deleteUserInfo(String userId);
+
+    /**根据userBirth范围筛选信息*/
+    ResultVO findByUserBirth(String userBirthStart, String userBirthEnd);
 }

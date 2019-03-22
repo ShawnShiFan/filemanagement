@@ -29,7 +29,7 @@ public class UserInfoDTO {
 
     /**    用户出生日期*/
     @NotEmpty
-    private String userBirth;
+    private Date userBirth;
 
     /**    用户电话*/
     @NotEmpty

@@ -1,13 +1,12 @@
 package com.pax.filemanagement.mapper;
 
-import com.pax.filemanagement.dao.UserInfo;
+
 import com.pax.filemanagement.dto.UserInfoDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-
-import java.awt.print.Pageable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,5 +47,8 @@ public interface UserMapper {
 
     /** 根据选择删除用户信息*/
     int deleteSelect();
+
+    /** 根据出生日期范围返回用户信息*/
+    List<UserInfoDTO> findByUserBirth(Date userBirthStart, Date userBirthEnd);
 
 }

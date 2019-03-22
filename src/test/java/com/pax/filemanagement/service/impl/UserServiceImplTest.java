@@ -47,13 +47,13 @@ public class UserServiceImplTest {
         UserInfoDTO userInfoDTO = new UserInfoDTO();
         String userId = KeyUtil.genUniqueKey();
         userInfoDTO.setUserId(userId);
-        userInfoDTO.setUserName("huanziq");
+        userInfoDTO.setUserName("测试时间4");
         userInfoDTO.setUserSex(0);
-        userInfoDTO.setUserBirth("19977");
-        userInfoDTO.setUserPhone("132427423423");
+        userInfoDTO.setUserPhone("132427423e423");
         userInfoDTO.setUserBirthAddress("江7苏");
-        userInfoDTO.setUserPhoto("file/e/1/2");
+        userInfoDTO.setUserPhoto("file/3/e/1/2");
         Date date = new Date();
+        userInfoDTO.setUserBirth(date);
         userInfoDTO.setCreateTime(date);
         userInfoDTO.setUpdateTime(date);
         int row =userService.addUser(userInfoDTO);

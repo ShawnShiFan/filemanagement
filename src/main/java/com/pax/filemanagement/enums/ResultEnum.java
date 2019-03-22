@@ -9,6 +9,8 @@ import lombok.Getter;
 @Getter
 public enum ResultEnum {
     USER_NOT_EXIST(10,"用户不存在"),
+    PARAM_INPUT_ERROR(11,"参数传入错误"),
+    PARAM_CORRECT(12,"参数传入正确"),
     ;
     private Integer code;
     private String message;

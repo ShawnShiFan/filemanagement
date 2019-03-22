@@ -11,6 +11,8 @@ import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -42,24 +44,19 @@ public class UserInfoController {
     }
 
     @PostMapping("/add")
-    public int addUser(@RequestParam(value = "userName",required = true)String userName,
-                       @RequestParam(value = "userId",required = true)int userSex,
-                       @RequestParam(value = "userBirth",required = true)String userBirth,
-                       @RequestParam(value = "userPhone",required = true)String userPhone,
-                       @RequestParam(value = "userBirthAddress",required = true)String userBirthAddress,
-                       @RequestParam(value = "userPhoto",required = true)String userPhoto,
-                       @RequestParam(value = "createTime",required = true)Date createTime,
-                       @RequestParam(value = "updateTime",required = true) Date updateTime){
+    @ResponseBody
+    public int addUser(UserInfoDTO user){
         UserInfoDTO userInfoDTO = new UserInfoDTO();
         String userId = KeyUtil.genUniqueKey();
         userInfoDTO.setUserId(userId);
-        userInfoDTO.setUserName(userName);
-        userInfoDTO.setUserSex(userSex);
-        userInfoDTO.setUserBirth(userBirth);
-        userInfoDTO.setUserPhone(userPhone);
-        userInfoDTO.setUserBirthAddress(userBirthAddress);
-        userInfoDTO.setUserPhoto(userPhoto);
+        userInfoDTO.setUserName(user.getUserName());
+        userInfoDTO.setUserSex(user.getUserSex());
+        userInfoDTO.setUserBirth(user.getUserBirth());
+        userInfoDTO.setUserPhone(user.getUserPhone());
+        userInfoDTO.setUserBirthAddress(user.getUserBirthAddress());
+        userInfoDTO.setUserPhoto(user.getUserPhoto());
         Date date = new Date();
+        System.out.println(date);
         userInfoDTO.setCreateTime(date);
         userInfoDTO.setUpdateTime(date);
 
@@ -75,6 +72,18 @@ public class UserInfoController {
     @GetMapping("/find/sex")
     public List<UserInfoDTO> findBySex(@RequestParam(value = "userSex",required = true)Integer userSex){
         return userService.findBySex(userSex);
+    }
+
+    @GetMapping("/userBirth")
+    public ResultVO  findByUserBirth(@RequestParam(value = "userBirthStart") String userBirthStart,
+                                              @RequestParam(value="userBirthEnd") String userBirthEnd ){
+
+
+
+        return userService.findByUserBirth(userBirthStart,userBirthEnd);
+
+
+
     }
 
 
